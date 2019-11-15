@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Books Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+    <div>
+        <h1>Welcome, {{ user.alias }}!</h1>
+        <a href="/books/add">Add Book and Review</a>
+        <br>
+        <a href="/logout">Logout</a>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <div class="book-page-left">
+        <div class="all-books-page">
+            <h2>Recent Book Reviews:</h2>
+            {% for review in latest_three_reviews %}
+            <a href="/books/{{review.book.id}}">{{ review.book.title }}</a>
+            <p>Rating: {{ review.rating }}/5</p> 
+            <p><a href="/users/{{review.user.id}}">{{ review.user.alias }}</a> says: {{ review.review }}</p>
+            <p>Posted on {{ review.created_at }}</p> 
+            <br>
+            <br>
+        {% endfor %}
+        </div>
+    </div>
+
+    <div class="book-page-right">
+        <div class="all-books-page">
+                <h2>Other Books with Reviews:</h2>
+                <div class="scroll-box">
+                {% for book in book %}
+                <a href="/books/{{book.id}}">{{ book.title }}</a>
+                <br>
+                {% endfor %}
+                </div>
+        </div>
+    </div>
+    
+
+</body>
+
+</html>

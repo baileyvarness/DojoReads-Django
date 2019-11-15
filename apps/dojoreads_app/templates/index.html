@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1>Welcome!</h1>
+
+    {% if messages %}
+    {% for message in messages %}
+    <p>{{ message }}</p>
+    {% endfor %} {% endif %}
+    <div class="form-box">
+      <h1>Register</h1>
+      <form action="/register" method="post">
+        {% csrf_token %}
+        <p>
+          <label for="name">Name: <input type="text" name="name" class="float-right"
+          /></label>
+        </p>
+        <p>
+          <label for="alias">Alias: <input type="text" name="alias" class="float-right"
+          /></label>
+        </p>
+        <p>
+            <label for="email">Email: <input type="email" name="email" class="float-right"></label>
+        </p>
+        <p>
+          <label for="password">Password: <input type="text" name="password" class="float-right"
+          /></label>
+        </p>
+        <p>*Password should be at least 8 characters</p>
+        <p>
+          <label for="password_confirm">Confirm PW: <input type="text" name="password_confirm" class="float-right"
+          /></label>
+        </p>
+        <button type="submit" class="float-right">Register</button>
+      </form>
+      <br>
+      <br>
+    </div>
+
+    <div class="form-box">
+      <h1>Login</h1>
+      <form action="/login" method="post">
+        {% csrf_token %}
+        <p>
+          <label for="email">Email: <input type="email" name="email" class="float-right"></label>
+        </p>
+        <p>
+          <label for="password"
+            >Password: <input type="text" name="password" class="float-right"
+          /></label>
+        </p>
+        <button type="submit" class="float-right">Login</button>
+      </form>
+      <br>
+      <br>
+    </div>
+
+</body>
+</html>

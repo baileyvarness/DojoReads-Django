@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Book and Review</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <a href="/books">Home</a>
+    <a href="/logout">Logout</a>
+    <h2>{{ book.title }}</h2>
+    <p>Author: {{ book.author.name }}</p>
+    <br>
+    <br>
+
+    <div class="book-page-left">
+        <h3>Reviews:</h3>
+        
+        {% for review in book.review.all %}
+            {% if review.user == user %}
+                <hr>
+                <p>Rating: {{ review.rating }}/5</p> 
+                <p><a href="/users/{{review.user.id}}">{{ review.user.alias }}</a> says: {{ review.review }}</p>
+                <p>Posted on {{ review.created_at }}</p> 
+                <a href="/delete_review/{{book.id}}/{{review.id}}">Delete this Review</a>
+            {% else %}
+                <hr>
+                <p>Rating: {{ review.rating }}</p> 
+                <p><a href="/users/{{review.user.id}}">{{ review.user.alias }}</a> says: {{ review.review }}</p>
+                <p>Posted on {{ review.created_at }}</p> 
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <div class="book-page-right">
+        <form action="/review_being_added/{{book.id}}" method="POST">
+            {% csrf_token %}
+            <p>Add a Review:</p> 
+                <textarea name="review" cols="30" rows="10"></textarea>
+            
+            <br>
+            <br>
+            <label for="rating">Rating:
+                <select name="rating">
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                </select> stars
+            </label>
+            <br>
+            <br>
+            <button>Submit Review</button>
+        </form>
+    </div>
+</body>
+</html>
+
+

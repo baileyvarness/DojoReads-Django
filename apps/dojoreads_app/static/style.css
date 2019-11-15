@@ -1,0 +1,48 @@
+* {
+    /* background-color: aquamarine; */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.form-box {
+    border: solid 4px black;
+    width: 300px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 50px;
+    font-size: medium;
+}
+
+.float-right {
+    float: right;
+    margin-right: 10px;
+}
+
+.scroll-box {
+    border: solid 4px black;
+    width: 300px;
+    height: 100px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 50px;
+    font-size: medium;
+    overflow: scroll;
+}
+
+.all-books-page {
+    /* border: solid 1px green; */
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 50px;
+    vertical-align: top;
+}
+
+.book-page-left {
+    width: 50%;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.book-page-right {
+    width: 25%;
+    display: inline-block;
+}
